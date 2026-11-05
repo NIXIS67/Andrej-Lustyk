@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Freelance webdesignér | Weby, které přivádějí zákazníky</title>
+  <meta name="description" content="Freelance webdesignér. Tvořím rychlé, krásné a SEO optimalizované weby, které mění návštěvníky na zákazníky.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&display=swap&subset=latin-ext" rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { soft: '#F8F9FA', mocha: '#4E3629', teal: '#005A60' },
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'Georgia', 'serif'],
+            sans: ['"DM Sans"', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; scroll-snap-type: y proximity; background: #F8F9FA; }
+    body { background: #F8F9FA; color: #4E3629; font-family: 'DM Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    .slide { min-height: 100vh; min-height: 100svh; scroll-snap-align: start; }
+    @media (min-width: 1024px) { .slide { height: 100vh; height: 100svh; } }
+
+    ::selection { background: #005A60; color: #F8F9FA; }
+    :focus-visible { outline: 3px solid #005A60; outline-offset: 3px; }
+
+    /* Hero image: organic, slowly morphing blob; CSS fallback if the photo fails to load */
+    .blob { position: relative; overflow: hidden; aspect-ratio: 1 / 1;
+      border-radius: 62% 38% 54% 46% / 45% 58% 42% 55%;
+      animation: morph 16s ease-in-out infinite;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(248,249,250,.55), transparent 40%),
+        radial-gradient(circle at 75% 70%, #005A60, transparent 60%),
+        #4E3629; }
+    .blob img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .blob::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(78,54,41,.3), transparent 50%); pointer-events: none; }
+    @keyframes morph {
+      0%, 100% { border-radius: 62% 38% 54% 46% / 45% 58% 42% 55%; }
+      33%      { border-radius: 40% 60% 38% 62% / 58% 42% 60% 40%; }
+      66%      { border-radius: 55% 45% 66% 34% / 38% 64% 36% 62%; }
+    }
+
+    /* Form fields */
+    .field { width: 100%; background: transparent; border: 1.5px solid rgba(78,54,41,.35); border-radius: 12px;
+      padding: .85rem 1rem; color: #4E3629; font: inherit; transition: border-color .2s, box-shadow .2s; }
+    .field::placeholder { color: rgba(78,54,41,.45); }
+    .field:hover { border-color: #4E3629; }
+    .field:focus { outline: none; border-color: #005A60; box-shadow: 0 0 0 4px rgba(0,90,96,.15); }
+
+    .btn { background: #005A60; color: #F8F9FA; transition: transform .2s, box-shadow .2s, background .2s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -10px rgba(0,90,96,.7); background: #004a4f; }
+
+    .dot { width: 10px; height: 10px; border-radius: 999px; border: 1.5px solid #4E3629; transition: all .25s; }
+    .dot.active { background: #005A60; border-color: #005A60; height: 28px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
+      .blob { animation: none; }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Hlavička -->
+  <header class="fixed top-0 inset-x-0 z-40">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
+      <a href="#hero" class="font-display font-extrabold text-xl tracking-tight text-mocha">Andrej Lustyk<span class="text-teal">.</span></a>
+      <a href="#contact" class="text-sm font-semibold text-teal underline underline-offset-4 decoration-2 hover:decoration-mocha transition">Napište mi</a>
+    </div>
+  </header>
+
+  <!-- Indikátor sekcí -->
+  <nav aria-label="Sekce" class="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-3">
+    <a href="#hero" class="dot active" data-dot="hero" aria-label="Přejít na úvod"></a>
+    <a href="#contact" class="dot" data-dot="contact" aria-label="Přejít na služby a kontakt"></a>
+  </nav>
+
+  <main>
+    <!-- SLIDE 1: ÚVOD -->
+    <section id="hero" class="slide relative flex items-center pt-24 pb-10 lg:py-0">
+      <div class="mx-auto w-full max-w-7xl px-6 lg:px-10 grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+
+        <div class="lg:col-span-7 order-2 lg:order-1">
+          <p data-aos="fade-up" class="inline-flex items-center gap-2 rounded-full border border-mocha/25 px-4 py-1.5 text-sm font-medium">
+            <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full rounded-full bg-teal opacity-60 animate-ping"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-teal"></span></span>
+            Freelance webdesignér a vývojář
+          </p>
+
+          <h1 data-aos="fade-up" data-aos-delay="100"
+              class="font-display font-extrabold text-mocha leading-[1.02] tracking-tight mt-6 text-[2.5rem] sm:text-6xl lg:text-[4.25rem]">
+            Tvořím weby, které přivádějí zákazníky a pomáhají vašemu byznysu růst.
+          </h1>
+
+          <p data-aos="fade-up" data-aos-delay="200" class="mt-6 max-w-xl text-lg sm:text-xl leading-relaxed text-mocha/80">
+            Weby na míru, rychlé jako blesk a postavené tak, aby z návštěvníků dělaly platící zákazníky. Jeden designér, žádná agenturní režie, výsledky, které se dají změřit.
+          </p>
+
+          <div data-aos="fade-up" data-aos-delay="300" class="mt-9 flex flex-wrap items-center gap-5">
+            <a href="#contact" class="btn inline-flex items-center gap-2 rounded-full px-8 py-4 text-base sm:text-lg font-semibold">
+              Začněme váš projekt
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#contact" class="font-semibold text-teal underline underline-offset-4 decoration-2 hover:decoration-mocha transition">Co všechno nabízím</a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 order-1 lg:order-2" data-aos="zoom-in" data-aos-duration="1000">
+          <div class="blob mx-auto w-full max-w-[20rem] sm:max-w-[26rem] lg:max-w-none lg:max-h-[calc(100svh-9rem)]">
+            <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?auto=format&fit=crop&w=1200&q=80"
+                 alt="Abstraktní 3D digitální umění s plynulými barevnými tvary"
+                 loading="eager" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: SLUŽBY + KONTAKT -->
+    <section id="contact" class="slide flex items-center py-24 lg:py-0">
+      <div class="mx-auto w-full max-w-7xl px-6 lg:px-10 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+        <!-- Vlevo: přednosti -->
+        <div>
+          <h2 data-aos="fade-up" class="font-display font-extrabold text-mocha tracking-tight leading-tight text-4xl sm:text-5xl">
+            Web, který vypadá skvěle a vydělává.
+          </h2>
+
+          <ul class="mt-10 space-y-8">
+            <li data-aos="fade-up" data-aos-delay="100" class="flex gap-5">
+              <span class="shrink-0 grid place-items-center h-14 w-14 rounded-2xl bg-teal text-soft">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+              </span>
+              <div>
+                <h3 class="font-display font-bold text-xl text-mocha">Rychlost</h3>
+                <p class="mt-1 text-mocha/80 leading-relaxed">Stránky, které se načtou raz dva, a spuštění za týdny, ne za měsíce.</p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200" class="flex gap-5">
+              <span class="shrink-0 grid place-items-center h-14 w-14 rounded-2xl bg-teal text-soft">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16z"/></svg>
+              </span>
+              <div>
+                <h3 class="font-display font-bold text-xl text-mocha">Prémiový design</h3>
+                <p class="mt-1 text-mocha/80 leading-relaxed">Layouty na míru vaší značce, žádné recyklované šablony.</p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300" class="flex gap-5">
+              <span class="shrink-0 grid place-items-center h-14 w-14 rounded-2xl bg-teal text-soft">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+              </span>
+              <div>
+                <h3 class="font-display font-bold text-xl text-mocha">SEO a výsledky</h3>
+                <p class="mt-1 text-mocha/80 leading-relaxed">Postavené tak, aby se umístily na Googlu a vedly návštěvníky k tomu, aby se vám ozvali.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Vpravo: formulář -->
+        <div data-aos="zoom-in" data-aos-delay="150">
+          <form id="inquiry" novalidate action="https://formsubmit.co/andrejlustyk9@gmail.com" method="POST" class="rounded-3xl border border-mocha/20 bg-soft p-7 sm:p-10 shadow-[0_30px_60px_-35px_rgba(78,54,41,.45)]">
+            <h3 class="font-display font-bold text-2xl text-mocha">Řekněte mi o svém projektu</h3>
+            <p class="mt-1 text-mocha/75">Odpovídám do jednoho pracovního dne.</p>
+
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+
+            <div class="mt-7 space-y-5">
+              <div>
+                <label for="name" class="block text-sm font-semibold text-mocha mb-2">Vaše jméno</label>
+                <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jana Nováková" class="field">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-semibold text-mocha mb-2">E-mail</label>
+                <input id="email" name="email" type="email" required autocomplete="email" placeholder="jana@firma.cz" class="field">
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-semibold text-mocha mb-2">Co potřebujete?</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Nový web pro firmu, redesign, landing page..." class="field resize-none"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn mt-7 w-full rounded-full px-8 py-4 text-lg font-semibold">Odeslat zadání projektu</button>
+            <p id="status" role="status" aria-live="polite" class="mt-4 text-center text-sm font-semibold text-teal min-h-[1.25rem]"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // AOS
+    document.addEventListener('DOMContentLoaded', function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (window.AOS) AOS.init({ duration: 800, easing: 'ease-out-cubic', once: false, offset: 60, disable: reduce });
+    });
+
+    // Indikátor sekcí
+    (function () {
+      var dots = document.querySelectorAll('[data-dot]');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            dots.forEach(function (d) { d.classList.toggle('active', d.dataset.dot === e.target.id); });
+          }
+        });
+      }, { threshold: 0.55 });
+      document.querySelectorAll('.slide').forEach(function (s) { io.observe(s); });
+    })();
+
+    // Formulář: odesílá e-mail na andrejlustyk9@gmail.com přes FormSubmit.co
+    (function () {
+      var ENDPOINT = 'https://formsubmit.co/ajax/andrejlustyk9@gmail.com';
+      var form = document.getElementById('inquiry');
+      var status = document.getElementById('status');
+      var button = form.querySelector('button[type="submit"]');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var ok = form.name.value.trim() && /^\S+@\S+\.\S+$/.test(form.email.value) && form.message.value.trim();
+        if (!ok) { status.textContent = 'Vyplňte prosím jméno, platný e-mail a krátkou zprávu.'; return; }
+        if (form._honey.value) { return; } // spam robot
+
+        button.disabled = true;
+        button.style.opacity = '.7';
+        status.textContent = 'Odesílám...';
+
+        fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            name: form.name.value.trim(),
+            email: form.email.value.trim(),
+            message: form.message.value.trim(),
+            _subject: 'Nová poptávka z webu od ' + form.name.value.trim(),
+            _replyto: form.email.value.trim(),
+            _template: 'table',
+            _captcha: 'false'
+          })
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.success === 'true' || data.success === true) {
+            status.textContent = 'Děkuji! Zadání dorazilo, ozvu se vám do jednoho pracovního dne.';
+            form.reset();
+          } else { throw new Error(data.message || 'send failed'); }
+        })
+        .catch(function () {
+          status.textContent = 'Odeslání se nepovedlo. Napište mi prosím přímo na andrejlustyk9@gmail.com.';
+        })
+        .finally(function () { button.disabled = false; button.style.opacity = ''; });
+      });
+    })();
+  </script>
+</body>
+</html>
